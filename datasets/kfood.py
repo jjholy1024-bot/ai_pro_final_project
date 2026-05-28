@@ -1,5 +1,6 @@
 import os
 import json
+import cv2
 from PIL import Image
 from torch.utils.data import Dataset
 
@@ -28,9 +29,16 @@ class KFoodDataset(Dataset):
         raise NotImplementedError
 
     def __len__(self):
-        # TODO
-        raise NotImplementedError
+        return len(self.df)
 
     def __getitem__(self, idx):
-        # TODO
-        raise NotImplementedError
+        img_id = self.df.iloc[idx,0]
+        img_path = self.img_dir + img_id
+        image = cv2.imread(img_path)
+        image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+        label = self.df.iloc[idx,1]
+        
+        if self.transform is not None:
+            image = self.transform(image)
+
+        return image, label
