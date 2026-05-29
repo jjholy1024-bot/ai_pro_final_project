@@ -8,15 +8,12 @@ def get_transforms(dataset_name: str, is_train: bool):
                 T.ToTensor(),
                 T.RandomHorizontalFlip(p=0.5), # 좌우 대칭 (50%)
                 T.RandomApply([
-                T.RandomAffine(degrees=30, translate=(0.1, 0.1), scale=(0.8, 1.2)
-                           )], p=0.3),                  # 이동, 크기 조절, 회전 (30%)
+                T.RandomAffine(degrees=30, translate=(0.1, 0.1))], p=0.3),        # 이동, 회전 (30%)
                 T.RandomApply([
-                T.ColorJitter(brightness=0.3, contrast=0.2)
-                ], p=0.3),                              # 밝기 및 대비 조절 
+                T.ColorJitter(brightness=0.3, contrast=0.2)], p=0.3),             # 밝기 및 대비 조절 
                 T.RandomApply([
                 T.RandomChoice([
-                T.RandomAdjustSharpness(sharpness_factor=2.0),
-                    ])], p=0.3),
+                T.RandomAdjustSharpness(sharpness_factor=2.0)])], p=0.3),
 
                 T.Normalize(mean=[0.485, 0.456, 0.406], 
                          std=[0.229, 0.224, 0.225]),
