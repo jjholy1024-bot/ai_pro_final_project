@@ -1,1 +1,6 @@
 data/
+GEMINI.md
+class/
+__pycache__/
+*.pyc
+runs/**/*.pth

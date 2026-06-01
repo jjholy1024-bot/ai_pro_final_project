@@ -13,7 +13,8 @@ class MyModel(nn.Module):
 
             nn.Conv2d(16, 32, kernel_size=3, padding=1),
             nn.ReLU(),
-            nn.MaxPool2d(2, 2)
+            nn.MaxPool2d(2, 2),
+            nn.AdaptiveAvgPool2d((8, 8))
         )
         self.classifier = nn.Sequential(
             nn.Linear(32 * 8 * 8, 128),

@@ -1,6 +1,5 @@
 import os
 import json
-import cv2
 from PIL import Image
 from torch.utils.data import Dataset
 
@@ -25,18 +24,29 @@ class KFoodDataset(Dataset):
         self.samples = self._load_split(split_path)
 
     def _load_split(self, split_path: str):
-        # TODO
-        raise NotImplementedError
+        samples = []
+        with open(split_path, 'r', encoding='utf-8') as f:
+            for line in f:
+                line = line.strip()
+                if not line:
+                    continue
+                if self.split == 'test':
+                    # test.txt: test_images/test_00000
+                    img_path = os.path.join(self.data_dir, f"{line}.jpg")
+                    samples.append((img_path, -1)) # dummy label
+                else:
+                    # train.txt / val.txt: 구이류/갈치구이/Img_001_0001 0
+                    rel_path, label_str = line.rsplit(' ', 1)
+                    img_path = os.path.join(self.data_dir, 'images', f"{rel_path}.jpg")
+                    samples.append((img_path, int(label_str)))
+        return samples
 
     def __len__(self):
-        return len(self.df)
+        return len(self.samples)
 
     def __getitem__(self, idx):
-        img_id = self.df.iloc[idx,0]
-        img_path = self.img_dir + img_id
-        image = cv2.imread(img_path)
-        image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
-        label = self.df.iloc[idx,1]
+        img_path, label = self.samples[idx]
+        image = Image.open(img_path).convert('RGB')
         
         if self.transform is not None:
             image = self.transform(image)
