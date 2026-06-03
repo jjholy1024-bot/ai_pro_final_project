@@ -1,0 +1,16 @@
+experiment_name: "KFood_MiniVGG_BN_Dropout"
+
+dataset:
+  name: "KFood"
+  data_dir: "./data/kfood_dataset"
+  batch_size: 64
+  num_workers: 4
+
+model:
+  name: "MyModel"
+  in_channels: 3
+  dropout: 0.5
+
+train:
+  epochs: 30
+  learning_rate: 0.001
