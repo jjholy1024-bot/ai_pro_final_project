@@ -5,6 +5,7 @@ def get_transforms(dataset_name: str, is_train: bool):
     if dataset_name == "KFood":
         if is_train == True:
             return T.Compose([
+                T.Resize((128, 128)),
                 T.ToTensor(),
                 T.RandomHorizontalFlip(p=0.5), # 좌우 대칭 (50%)
                 T.RandomApply([
@@ -22,6 +23,7 @@ def get_transforms(dataset_name: str, is_train: bool):
         
         elif is_train == False:
             return T.Compose([
+                T.Resize((128, 128)),
                 T.ToTensor(),
                 T.Normalize(mean=[0.485, 0.456, 0.406], 
                          std=[0.229, 0.224, 0.225])
