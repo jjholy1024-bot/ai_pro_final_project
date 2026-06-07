@@ -1,0 +1,20 @@
+# Heterogeneous Ensemble (5-Block & 6-Block) - Final Golden Run
+experiment_name: "exp_07_final_hetero_ens_5_6"
+
+dataset:
+  name: "KFood"
+  data_dir: "/content/kfood_dataset"
+  batch_size: 64 # 224px + 이종 앙상블 조합의 VRAM 효율성 고려
+  num_workers: 4 # Colab 환경의 다중 코어 활용을 위해 상향
+  cleanse_data: True # MD5 기반 데이터 클렌징 활성화
+
+model:
+  name: "MyModel"
+  in_channels: 3
+  dropout: 0.5
+  ensemble_blocks: [5, 6] # 5블록(패턴) + 6블록(질감) 이종 조합
+  use_se: True
+
+train:
+  epochs: 60 # 충분한 수렴을 위해 60회로 연장
+  learning_rate: 0.0005 # 안정적인 최적화를 위해 유지
