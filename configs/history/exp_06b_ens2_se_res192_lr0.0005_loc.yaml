@@ -1,0 +1,19 @@
+# Final Master Experiment with Golden Standard Architecture
+experiment_name: "KFood_Final_Golden_v1"
+
+dataset:
+  name: "KFood"
+  data_dir: "./data/kfood_dataset"
+  batch_size: 64
+  num_workers: 4
+
+model:
+  name: "MyModel"
+  in_channels: 3
+  dropout: 0.4
+  use_se: True
+  ensemble_count: 2
+
+train:
+  epochs: 40
+  learning_rate: 0.0005 # 정교한 학습을 위해 LR 하향 조정

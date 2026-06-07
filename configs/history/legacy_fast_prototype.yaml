@@ -1,0 +1,50 @@
+# Exp A: Base (128px, Strong Aug)
+experiment_name: "Fast_Base_128"
+dataset:
+  name: "KFood"
+  data_dir: "./data/kfood_dataset"
+  batch_size: 128
+  num_workers: 4
+model:
+  name: "MyModel"
+  in_channels: 3
+  dropout: 0.5
+  use_se: False
+  ensemble_count: 1
+train:
+  epochs: 5
+  learning_rate: 0.001
+---
+# Exp B: Base + SE Block
+experiment_name: "Fast_SE_128"
+dataset:
+  name: "KFood"
+  data_dir: "./data/kfood_dataset"
+  batch_size: 128
+  num_workers: 4
+model:
+  name: "MyModel"
+  in_channels: 3
+  dropout: 0.5
+  use_se: True
+  ensemble_count: 1
+train:
+  epochs: 5
+  learning_rate: 0.001
+---
+# Exp C: Base + 2-Column Ensemble
+experiment_name: "Fast_Ens_128"
+dataset:
+  name: "KFood"
+  data_dir: "./data/kfood_dataset"
+  batch_size: 64 # Ensemble uses more VRAM
+  num_workers: 4
+model:
+  name: "MyModel"
+  in_channels: 3
+  dropout: 0.5
+  use_se: False
+  ensemble_count: 2
+train:
+  epochs: 5
+  learning_rate: 0.001

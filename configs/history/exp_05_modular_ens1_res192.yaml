@@ -1,0 +1,18 @@
+experiment_name: "Exp03_Resolution_192"
+
+dataset:
+  name: "KFood"
+  data_dir: "./data/kfood_dataset"
+  batch_size: 64
+  num_workers: 4
+
+model:
+  name: "MyModel"
+  in_channels: 3
+  dropout: 0.5
+  use_se: False
+  ensemble_count: 1
+
+train:
+  epochs: 10
+  learning_rate: 0.001

@@ -1,0 +1,16 @@
+# Heterogeneous Ensemble (5-Block & 6-Block) - Final Golden Run
+experiment_name: "exp_07_final_hetero_ens_5_6_eval"
+
+dataset:
+  name: "KFood"
+  data_dir: "data/kfood_dataset"
+  batch_size: 64
+  num_workers: 4
+  cleanse_data: True
+
+model:
+  name: "MyModel"
+  in_channels: 3
+  dropout: 0.5
+  ensemble_blocks: [5, 6]
+  use_se: True

@@ -1,0 +1,20 @@
+# Final Golden Standard Configuration for Google Colab
+experiment_name: "KFood_Colab_Golden_v1"
+
+dataset:
+  name: "KFood"
+  data_dir: "/content/data/kfood_dataset" # 코랩 로컬 디스크 경로 (/content/data로 수정)
+  batch_size: 128
+ # T4의 16GB VRAM을 활용해 배치 사이즈 확대
+  num_workers: 4
+
+model:
+  name: "MyModel"
+  in_channels: 3
+  dropout: 0.4
+  use_se: True
+  ensemble_count: 2
+
+train:
+  epochs: 50 # 속도가 빨라진 만큼 충분히 학습
+  learning_rate: 0.0005

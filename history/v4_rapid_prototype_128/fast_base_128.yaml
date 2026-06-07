@@ -1,0 +1,16 @@
+
+experiment_name: "Fast_Base_128"
+dataset:
+  name: "KFood"
+  data_dir: "./data/kfood_dataset"
+  batch_size: 128
+  num_workers: 4
+model:
+  name: "MyModel"
+  in_channels: 3
+  dropout: 0.5
+  use_se: False
+  ensemble_count: 1
+train:
+  epochs: 5
+  learning_rate: 0.001
